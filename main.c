@@ -6,11 +6,11 @@
 #include <spec_input.h>
 int main()
 {
-	int option = -1, module_mass;
+	int option = -1;
 	float altitude, atitude, h_dist, vel_x, vel_y, fuel, force_r, force_t;
-	int landing_status;
-	int pdev;
-	pid_t pid_clear;
+	int landing_status, module_mass;
+	int pdev = NULL, vdev = NULL;
+	/* pid_t pid_clear; */
 	
 	
 	while(1)										/* Main Loop */
@@ -29,30 +29,47 @@ int main()
 		
 		scanf("%d", &option);
 		
-		switch(option)
-		{
-			case 1 :
-				spec_input(altitude, atitude, h_dist, vel_x, vel_y, fuel, module_mass);
-				break;
-				
-			case 2 :
-				
-				pdev = cockpit_display(altitude, atitude, h_dist, vel_x, vel_y, fuel, force_r, force_t, landing_status);
-				break;
-			case 3 :
-				pdev = pos_graph(altitude, h_dist, x_origin, y_origin);
-				break;
-			case 4 :
-				
-				break;
-			case 5 :
-				
-				break;
-			case 0 :
-				exit(0);
-			default :
-				break;
+		if(option == 1)
+		{		
+		
+			spec_input(altitude, atitude, h_dist, vel_x, vel_y, fuel, module_mass);
+			option = -1;
 		}
+		else if(option==2)
+		{
+			vdev = cockpit_display(altitude, atitude, h_dist, vel_x, vel_y, fuel, force_r, force_t, landing_status);
+			
+			
+		}
+		else if(option==3)
+		{
+			vdev = pos_graph(altitude, h_dist, x_origin, y_origin);
+			
+			
+		}
+		else if(option==4)
+		{
+			
+			
+			
+		}
+		else if(option==5)
+		{
+		}
+		else if(option==0)
+		{
+			
+			
+			
+		}
+		else
+		{
+			
+			
+			
+		}
+		
+
 		
 	}
 	

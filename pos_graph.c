@@ -6,14 +6,17 @@
 
 int pos_graph(float altitude, float h_dist, int x_origin, int y_origin)
 {
-	int window_h = 600, window_w = 800; /* Holds the window height and width */
-	int pdev = -1; /* Device ident for g2 */
+	int window_h = 600, window_w = 800;  /* Holds the window height and width */
+	int pdev = NULL, vdev = NULL;        /* Device ident for g2 */
 	
 	pdev = g2_open_X11(window_w , window_h);
-	g2_clean(pdev);
+	vdev=g2_open_vd();
+	g2_set_font_size(vdev, font_size);
+	g2_attach(vdev, pdev);
+	g2_clean(vdev);
 	g2_line(x_origin, 
 	
 	
 	
-	return pdev;
+	return vdev;
 }

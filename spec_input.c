@@ -19,4 +19,7 @@ void spec_input(float *altitude_ptr, float *atitude_ptr, float *h_dist_ptr, floa
 	printf("\nVelocidade Horizontal (m/s): "); scanf("%f", vel_x_ptr);	
 	printf("\nVelocidade Vertical (m/s): "); scanf("%f", vel_y_ptr);
 	
+	/* printf("\n\n======== Ponto de Alunagem ========");
+	printf("\nPonto de Alunagem (x): "); scanf("%f", vel_y_ptr); */
+	
 }
