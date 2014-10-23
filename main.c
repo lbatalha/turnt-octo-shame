@@ -3,10 +3,10 @@
 #include <unistd.h>
 #include <pos_graph.h>
 #include <cockpit_display.h>
-
+#include <spec_input.h>
 int main()
 {
-	int option = -1;
+	int option = -1, module_mass;
 	float altitude, atitude, h_dist, vel_x, vel_y, fuel, force_r, force_t;
 	int landing_status;
 	int pdev;
@@ -32,21 +32,22 @@ int main()
 		switch(option)
 		{
 			case 1 :
-				
-				
+				spec_input(altitude, atitude, h_dist, vel_x, vel_y, fuel, module_mass);
+				break;
 				
 			case 2 :
 				
 				pdev = cockpit_display(altitude, atitude, h_dist, vel_x, vel_y, fuel, force_r, force_t, landing_status);
+				break;
 			case 3 :
-				
 				pdev = pos_graph(altitude, h_dist, x_origin, y_origin);
+				break;
 			case 4 :
 				
-				
+				break;
 			case 5 :
 				
-				
+				break;
 			case 0 :
 				exit(0);
 			default :

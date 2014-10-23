@@ -11,7 +11,7 @@ int pos_graph(float altitude, float h_dist, int x_origin, int y_origin)
 	
 	pdev = g2_open_X11(window_w , window_h);
 	g2_clean(pdev);
-	g2_line(x_origin,
+	g2_line(x_origin, 
 	
 	
 	
