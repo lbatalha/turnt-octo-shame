@@ -16,6 +16,6 @@ void draw_data(int vdev, char label, float value, char units, int x_pos, int y_p
 	
 	g2_string(vdev, x_pos, y_pos, label);                                            /* First draw label */
 	g2_string(vdev, label_value_dist + x_pos, y_pos, value_s);                        /* Then draw value */
-	g2_string(vdev, label_value_dist + x_pos + (strlen * font_size), y_pos, value_s);
+	g2_string(vdev, label_value_dist + x_pos + (strlen * font_size), y_pos, units);
 		
 }

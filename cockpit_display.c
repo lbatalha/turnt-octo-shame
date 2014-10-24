@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <g2.h>
 #include <g2_X11.h>
-#include <draw_data.h>
+#include "draw_data.h"
 
 int cockpit_display(float altitude, float atitude, float h_dist, float vel_x, float vel_y, float fuel, float force_r, float force_t, char landing_status)
 {
@@ -26,7 +26,10 @@ int cockpit_display(float altitude, float atitude, float h_dist, float vel_x, fl
 	draw_data(vdev, "Velocidade y:", vel_y, "m/s", 20, window_h - 10 - 5*font_size, font_size, label_value_dist);
 	draw_data(vdev, "Fuel:", fuel, "Kg", 20, window_h - 10 - 6*font_size, font_size, label_value_dist);
 	draw_data(vdev, "Fuel Rate:", fuel_rate, "Kg/min", 20, window_h - 10 - 7*font_size, font_size, label_value_dist);
-	draw_data(vdev, "Aterragem:", landing_status, "", 20, window_h - 10 - 9*font_size, font_size, label_value_dist);
+	
+	g2_string(vdev, 20, window_h - 10 - 8*font_size, "Aterragem:");
+	g2_string(vdev, label_value_dist + 20, window_h - 10 - 8*font_size, landing_status);
+	
 	draw_data(vdev, "FR:", force_r, "%%", 200, window_h - 10 - 3*font_size, font_size, label_value_dist);
 	draw_data(vdev, "FM:", force_t, "%%", 200, window_h - 10 - 4*font_size, font_size, label_value_dist);
 	

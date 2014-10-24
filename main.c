@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <pos_graph.h>
-#include <cockpit_display.h>
-#include <spec_input.h>
+#include "pos_graph.h"
+#include "cockpit_display.h"
+#include "spec_input.h"
+
 int main()
 {
 	int option = -1;
-	float altitude, atitude, h_dist, vel_x, vel_y, fuel, force_r, force_t;
-	int landing_status, module_mass;
+	float altitude, atitude, h_dist, vel_x, vel_y, fuel, force_r = 0, force_t = 0, module_mass;
+	char landing_status[32];
 	int pdev = NULL, vdev = NULL;
 	/* pid_t pid_clear; */
 	
@@ -32,7 +33,7 @@ int main()
 		if(option == 1)
 		{		
 		
-			spec_input(altitude, atitude, h_dist, vel_x, vel_y, fuel, module_mass);
+			spec_input(&altitude, &atitude, &h_dist, &vel_x, &vel_y, &fuel, &module_mass);
 			option = -1;
 		}
 		else if(option==2)
@@ -43,7 +44,7 @@ int main()
 		}
 		else if(option==3)
 		{
-			vdev = pos_graph(altitude, h_dist, x_origin, y_origin);
+			/* vdev = pos_graph(altitude, h_dist, x_origin, y_origin); */
 			
 			
 		}
