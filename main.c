@@ -8,7 +8,7 @@
 int main()
 {
 	int option = -1;
-	float altitude, atitude, h_dist, vel_x, vel_y, fuel, force_r = 0, force_t = 0, module_mass;
+	float altitude, atitude, h_dist, vel_x, vel_y, fuel, fuel_rate, force_r = 0, force_t = 0, module_mass;
 	char landing_status[32];
 	int pdev = NULL, vdev = NULL;
 	/* pid_t pid_clear; */
@@ -38,7 +38,7 @@ int main()
 		}
 		else if(option==2)
 		{
-			vdev = cockpit_display(altitude, atitude, h_dist, vel_x, vel_y, fuel, force_r, force_t, landing_status);
+			vdev = cockpit_display(altitude, atitude, h_dist, vel_x, vel_y, fuel, fuel_rate, force_r, force_t, landing_status);
 			
 			
 		}

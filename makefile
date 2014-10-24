@@ -1,2 +1,3 @@
-eaglemake: main.c cockpit_display.c draw_data.c spec_input.c
-	gcc -o main.c cockpit_display.c draw_data.c spec_input.c -I -o eagle2014
+CFLAGS=-O2 -march=native -Wall -ansi -pedantic -lg2
+
+eagle2014: main.o cockpit_display.o draw_data.o spec_input.o

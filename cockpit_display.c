@@ -4,7 +4,7 @@
 #include <g2_X11.h>
 #include "draw_data.h"
 
-int cockpit_display(float altitude, float atitude, float h_dist, float vel_x, float vel_y, float fuel, float force_r, float force_t, char landing_status)
+int cockpit_display(float altitude, float atitude, float h_dist, float vel_x, float vel_y, float fuel, float fuel_rate, float force_r, float force_t, char landing_status)
 {
 	int window_h = 600, window_w = 800; /* Holds the window height and width */
 	int pdev = NULL, vdev = NULL; /* Device ident for g2 */

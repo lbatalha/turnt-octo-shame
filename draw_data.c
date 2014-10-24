@@ -3,19 +3,15 @@
 #include <g2.h>
 #include <g2_X11.h>
 
-void draw_data(int vdev, char label, float value, char units, int x_pos, int y_pos, int font_size int label_value_dist)
+void draw_data(int vdev, char *label, float value, char *units, int x_pos, int y_pos, int font_size, char label_value_dist)
 {
-	int strlen = 0;
+	int lenght = 0;
+	char value_s[64];
 	
-	sprintf(char value_s[64], "%.2f". value);                                           /*Float to String*/
-	
-	for(i=0;value_s[i]!='\0';i++)
-	{
-		strlen = strlen + 1;                                /* count number of characters to be diplayed */
-	}
-	
+	lenght = sprintf(value_s, "%.2f", value);                                           /*Float to String*/
+		
 	g2_string(vdev, x_pos, y_pos, label);                                            /* First draw label */
 	g2_string(vdev, label_value_dist + x_pos, y_pos, value_s);                        /* Then draw value */
-	g2_string(vdev, label_value_dist + x_pos + (strlen * font_size), y_pos, units);
+	g2_string(vdev, label_value_dist + x_pos + (lenght * font_size), y_pos, units);
 		
 }
