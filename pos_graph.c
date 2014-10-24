@@ -12,8 +12,9 @@ int pos_graph(float altitude, float h_dist, int x_origin, int y_origin)
 	pdev = g2_open_X11(window_w , window_h);
 	vdev=g2_open_vd();
 	g2_set_font_size(vdev, font_size);
+	g2_pen(vdev, 1);
 	g2_attach(vdev, pdev);
-	g2_clean(vdev);
+	g2_clear(vdev);
 	/* g2_line(x_origin,  */
 	
 	

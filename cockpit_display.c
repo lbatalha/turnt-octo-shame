@@ -14,8 +14,9 @@ int cockpit_display(float altitude, float atitude, float h_dist, float vel_x, fl
 	pdev = g2_open_X11(window_w , window_h);
 	vdev=g2_open_vd();
 	g2_set_font_size(vdev, font_size);
+	g2_pen(vdev, 1);
 	g2_attach(vdev, pdev);
-	g2_clean(vdev);
+	g2_clear(vdev);
 	
 	
 	/*Protype: draw_data(int vdev, char label, float value, char units, int x_pos, int y_pos, int font_size int label_value_dist) */
@@ -28,7 +29,7 @@ int cockpit_display(float altitude, float atitude, float h_dist, float vel_x, fl
 	draw_data(vdev, "Fuel Rate:", fuel_rate, "Kg/min", 20, window_h - 10 - 7*font_size, font_size, label_value_dist);
 	
 	g2_string(vdev, 20, window_h - 10 - 8*font_size, "Aterragem:");
-	g2_string(vdev, label_value_dist + 20, window_h - 10 - 8*font_size, landing_status);
+	g2_string(vdev, label_value_dist + 20, window_h - 10 - 8*font_size, &landing_status);
 	
 	draw_data(vdev, "FR:", force_r, "%%", 200, window_h - 10 - 3*font_size, font_size, label_value_dist);
 	draw_data(vdev, "FM:", force_t, "%%", 200, window_h - 10 - 4*font_size, font_size, label_value_dist);

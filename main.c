@@ -10,7 +10,7 @@ int main()
 	int option = -1;
 	float altitude, atitude, h_dist, vel_x, vel_y, fuel, fuel_rate, force_r = 0, force_t = 0, module_mass;
 	char landing_status[32];
-	int pdev = NULL, vdev = NULL;
+	/* int pdev = NULL, vdev = NULL; */
 	/* pid_t pid_clear; */
 	
 	
@@ -30,48 +30,29 @@ int main()
 		
 		scanf("%d", &option);
 		
-		if(option == 1)
-		{		
-		
-			spec_input(&altitude, &atitude, &h_dist, &vel_x, &vel_y, &fuel, &module_mass);
-			option = -1;
-		}
-		else if(option==2)
-		{
-			vdev = cockpit_display(altitude, atitude, h_dist, vel_x, vel_y, fuel, fuel_rate, force_r, force_t, landing_status);
-			
-			
-		}
-		else if(option==3)
-		{
-			/* vdev = pos_graph(altitude, h_dist, x_origin, y_origin); */
-			
-			
-		}
-		else if(option==4)
-		{
-			
-			
-			
-		}
-		else if(option==5)
-		{
-		}
-		else if(option==0)
-		{
-			
-			
-			
-		}
-		else
-		{
-			
-			
-			
-		}
-		
 
-		
+		switch(option){
+			case 1 :
+				spec_input(&altitude, &atitude, &h_dist, &vel_x, &vel_y, &fuel, &module_mass);
+				option = -1;
+				break;
+			case 2 :
+				cockpit_display(altitude, atitude, h_dist, vel_x, vel_y, fuel, fuel_rate, force_r, force_t, landing_status);
+				break;
+			case 3 :
+				/* pdev = pos_graph(altitude, h_dist, x_origin, y_origin); */
+				break;
+			case 4 :
+				/* vdev = pos_graph(altitude, h_dist, x_origin, y_origin); */
+				break;
+			case 5 :
+				
+				break;
+			case 0 :
+				exit(0);
+			default :
+				break;
+		}
 	}
 	
 	/* ############################################################################ 
