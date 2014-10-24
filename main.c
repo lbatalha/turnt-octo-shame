@@ -11,18 +11,18 @@
 
 int main()
 {
-	struct main_data 
-	{
-		int option = -1;
-		float altitude, atitude, h_dist, vel_x, vel_y, fuel, fuel_rate = 0, force_r = 0, force_t = 0, module_mass;
-		char landing_status[32] = "";
-		int pdev = -1;
-		int vdev = -1;
-		int window_h = 600; 
-		int window_w = 800; /* Holds the window height and width */
-	};
-	
 	struct main_data data;
+	
+	data.option = -1;
+	data.pdev = -1;
+	data.vdev = -1;
+	data.font_size = 12;
+	data.label_value_dist = 22;
+	data.window_h = 600;
+	data.window_w = 800;
+	
+	strcpy(data.landing_status,"Em Progresso...");	
+	
 	
 	while(1)										/* Main Loop */
 	{
@@ -42,22 +42,22 @@ int main()
 		strcpy(data.landing_status,"Em Progresso...");
 		
 		
-		switch(option){
+		switch(data.option)
+		{
 			case 1 :
-				spec_input(&data);
-				
+				spec_input(data);
 				data.option = -1;
 				break;
 			case 2 :
 				if(data.vdev == -1 || data.pdev == -1)
 				{
-					main_data.pdev = g2_open_X11(data.window_w, data.window_h);
-					main_data.vdev = g2_open_vd();
+					data.pdev = g2_open_X11(data.window_w, data.window_h);
+					data.vdev = g2_open_vd();
 					g2_attach(data.vdev, data.pdev);
 				}
 				printf("vdev: %d - pdev: %d\n", data.vdev, data.pdev);
 				
-				cockpit_display(data.vdev, data.window_h, data.window_w, data.altitude, data.atitude, data.h_dist, data.vel_x, data.vel_y, data.fuel, data.fuel_rate, data.force_r, data.force_t, data.landing_status);
+				cockpit_display(data);
 				break;
 			case 3 :
 				/* pdev = pos_graph(altitude, h_dist, x_origin, y_origin); */
@@ -69,8 +69,7 @@ int main()
 				
 				break;
 			case 0 :
-				if(data.vdev != -1)
-					g2_close(data.vdev);
+				
 				exit(0);
 			default :
 				data.pdev = -1; data.vdev = -1;

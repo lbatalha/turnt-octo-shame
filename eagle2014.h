@@ -9,11 +9,13 @@ struct main_data
 	int pdev;
 	int vdev;
 	int window_h, window_w; 
+	int font_size;
+	int label_value_dist;
 };
 
 
 int cockpit_display(struct main_data data);
-void draw_data(struct main_data data);
-void spec_input(struct main_data *data);
+void draw_data(struct main_data data, char *label, float value, char *units, int x_pos, int y_pos );
+void spec_input(struct main_data data);
 
 #endif
