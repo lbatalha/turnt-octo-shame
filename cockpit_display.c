@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <g2.h>
 #include <g2_X11.h>
-#include "draw_data.h"
+#include "eagle2014.h"
 
 int cockpit_display(int vdev, int window_h, int window_w, float altitude, float atitude, float h_dist, float vel_x, float vel_y, float fuel, float fuel_rate, float force_r, float force_t, char *landing_status)
 {

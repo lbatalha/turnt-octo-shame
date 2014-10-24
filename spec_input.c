@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include#include "eagle2014.h" <unistd.h>
 
 
 void spec_input(float *altitude_ptr, float *atitude_ptr, float *h_dist_ptr, float *vel_x_ptr, float *vel_y_ptr, float *fuel_ptr, float *module_mass_ptr)

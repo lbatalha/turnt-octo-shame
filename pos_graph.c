@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <g2.h>
 #include <g2_X11.h>
-
+#include "eagle2014.h"
 
 int pos_graph(float altitude, float h_dist, int x_origin, int y_origin)
 {
