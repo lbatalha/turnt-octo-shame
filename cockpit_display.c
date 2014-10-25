@@ -4,7 +4,7 @@
 #include <g2_X11.h>
 #include "eagle2014.h"
 
-int cockpit_display(struct main_data *data)
+void cockpit_display(struct main_data *data)
 {
 
 	
@@ -30,8 +30,6 @@ int cockpit_display(struct main_data *data)
 	
 	g2_flush(data->vdev);
 	
-	
-return 0;
 }
 
 

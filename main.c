@@ -12,7 +12,9 @@
 int main()
 {
 	struct main_data data;
-	
+	pthread_t t_id;
+	int t_return;	
+
 	data.option = -1;
 	data.pdev = -1;
 	data.vdev = -1;
@@ -21,8 +23,7 @@ int main()
 	data.window_h = 600;
 	data.window_w = 800;
 	
-	pthread_t t_id;
-	int t_return;	
+
 	
 	
 	while(1)										/* Main Loop */
