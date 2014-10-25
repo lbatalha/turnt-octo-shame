@@ -21,7 +21,8 @@ int main()
 	data.window_h = 600;
 	data.window_w = 800;
 	
-	strcpy(data.landing_status,"Em Progresso...");	
+	pthread_t t_id;
+	int t_return;	
 	
 	
 	while(1)										/* Main Loop */
@@ -51,19 +52,25 @@ int main()
 			case 2 :
 				if(data.vdev == -1 || data.pdev == -1)
 				{
+					
 					data.pdev = g2_open_X11(data.window_w, data.window_h);
 					data.vdev = g2_open_vd();
 					g2_attach(data.vdev, data.pdev);
+					strcpy(data.landing_status,"Em Progresso...");
+
 				}
+
 				printf("vdev: %d - pdev: %d\n", data.vdev, data.pdev);
 				
-				cockpit_display(data);
+				t_return = pthread_create(&t_id, NULL, &cockpit_display, &data);
+
+				data.option = -1;
 				break;
 			case 3 :
-				/* pdev = pos_graph(altitude, h_dist, x_origin, y_origin); */
+				
 				break;
 			case 4 :
-				/* vdev = pos_graph(altitude, h_dist, x_origin, y_origin); */
+				
 				break;
 			case 5 :
 				

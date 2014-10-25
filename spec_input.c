@@ -3,22 +3,33 @@
 #include <unistd.h>
 #include "eagle2014.h" 
 
-
+void input_check(char *label, float *input)
+{
+	int end = 1;
+	while(end)
+	{
+		printf("%s", label); 
+		if((scanf("%f", input)) < 1)
+			printf("Insira apenas numeros Reais\n");
+		else
+			end = 0;
+	}
+}
 void spec_input(struct main_data data)
 {
 	printf("\033[2J");
 	printf("\n======== Especificação dos dados do módulo ========");
 	
-	printf("\nMassa do Modulo (Kg): "); scanf("%f", &data.module_mass);
-	printf("Quantidade de Combustivel (Kg): "); scanf("%f", &data.fuel);	
+	input_check("\nMassa do Modulo (Kg): ", &data.module_mass); 
+	input_check("Quantidade de Combustivel (Kg): ", &data.fuel);
 	
 	printf("\n\n======== Dados iniciais de voo ========");
 	
-	printf("\nAltitude Inicial (m): "); scanf("%f", &data.altitude);
-	printf("Atitude (º): "); scanf("%f", &data.atitude);	
-	printf("Distancia Horizontal (m): "); scanf("%f", &data.h_dist);	
-	printf("Velocidade Horizontal (m/s): "); scanf("%f", &data.vel_x);	
-	printf("Velocidade Vertical (m/s): "); scanf("%f", &data.vel_y);
+	input_check("\nAltitude Inicial (m): ", &data.altitude);
+	input_check("Atitude (º): ", &data.atitude);
+	input_check("Distancia Horizontal (m): ", &data.h_dist);
+	input_check("Velocidade Horizontal (m/s): ", &data.vel_x);
+	input_check("Velocidade Vertical (m/s): ", &data.vel_y);
 	
 	/* printf("\n\n======== Ponto de Alunagem ========");
 	printf("\nPonto de Alunagem (x): "); scanf("%f", vel_y_ptr); */
