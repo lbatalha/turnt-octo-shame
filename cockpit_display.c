@@ -4,7 +4,7 @@
 #include <g2_X11.h>
 #include "eagle2014.h"
 
-void cockpit_display(struct main_data *data)
+void * cockpit_display(struct main_data *data)
 {
 
 	
@@ -29,7 +29,8 @@ void cockpit_display(struct main_data *data)
 	draw_data(*data, "FM:", data->force_t, "%%", 200, data->window_h - 10 - 4*data->font_size);
 	
 	g2_flush(data->vdev);
-	
+
+	return 0;
 }
 
 

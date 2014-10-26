@@ -14,7 +14,7 @@ struct main_data
 };
 
 
-void cockpit_display(struct main_data *data);
+void * cockpit_display(struct main_data *data);
 void draw_data(struct main_data data, char *label, float value, char *units, int x_pos, int y_pos );
 void spec_input(struct main_data data);
 

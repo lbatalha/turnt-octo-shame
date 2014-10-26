@@ -10,10 +10,10 @@ void draw_data(struct main_data data, char *label, float value, char *units, int
 	int length = 0;
 	char value_s[64];
 	
-	length = sprintf(value_s, "%.2f", value);                                           /*Float to String*/
+	length = sprintf(value_s, "%.2f", value);
 		
-	g2_string(data.vdev, x_pos, y_pos, label);                                            /* First draw label */
-	g2_string(data.vdev, data.label_value_dist + x_pos, y_pos, value_s);                        /* Then draw value */
+	g2_string(data.vdev, x_pos, y_pos, label);
+	g2_string(data.vdev, data.label_value_dist + x_pos, y_pos, value_s);
 	g2_string(data.vdev, data.label_value_dist + x_pos + (length * data.font_size), y_pos, units);
 		
 }

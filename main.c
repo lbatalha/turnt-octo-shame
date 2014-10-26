@@ -13,7 +13,7 @@ int main()
 {
 	struct main_data data;
 	pthread_t t_id;
-	int t_return;	
+	int t_return;
 
 	data.option = -1;
 	data.pdev = -1;
@@ -40,9 +40,9 @@ int main()
 		printf("\n");
 		printf("Escolha uma opção: ");
 		
-		scanf("%d", &data.option);
-		strcpy(data.landing_status,"Em Progresso...");
-		
+		if((scanf("%d", &data.option)) < 1)
+			printf("Insira apenas o Numero da opção\n");
+	
 		
 		switch(data.option)
 		{
@@ -64,7 +64,7 @@ int main()
 				printf("vdev: %d - pdev: %d\n", data.vdev, data.pdev);
 				
 				t_return = pthread_create(&t_id, NULL, &cockpit_display, &data);
-
+				/*cockpit_display(&data);*/
 				data.option = -1;
 				break;
 			case 3 :
