@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdio_ext.h>
 #include <unistd.h>
 #include <string.h>
 #include <pthread.h>
@@ -13,13 +14,14 @@ int main()
 {
 	struct main_data data;
 	pthread_t t_id;
+
 	/*int t_return;*/
 
 	data.option = -1;
 	data.pdev = -1;
 	data.vdev = -1;
-	data.font_size = 12;
-	data.label_value_dist = 22;
+	data.font_size = 16;
+	data.label_value_dist = 10;
 	data.window_h = 600;
 	data.window_w = 800;
 	
@@ -28,8 +30,8 @@ int main()
 	
 	while(1)										/* Main Loop */
 	{
-		sleep(1);
-		printf("\033[2J");
+		
+		/*printf("\033[2J");*/
 		printf("\n");
 		printf("1. Especificação dos dados do módulo e das condições iniciais do voo (utilizar unidades do S.I.).\n");
 		printf("2. Simulação do voo em modo de \"cockpit\".\n");
@@ -40,36 +42,34 @@ int main()
 		printf("\n");
 		printf("Escolha uma opção: ");
 		
-		if((scanf("%d", &data.option)) < 1)
-			printf("Insira apenas o Numero da opção\n");
-	
+		if((scanf("%d", &data.option)) < 1){
+			printf("Opção Invalida");
+			__fpurge(stdin);
+		}
 		
 		switch(data.option)
 		{
 			case 1 :
-				spec_input(data);
+				spec_input(&data);
+				printf("%f %f %f %f %f\n", data.altitude, data.atitude, data.h_dist, data.vel_x, data.vel_y);
 				data.option = -1;
 				break;
 			case 2 :
 				if(data.vdev == -1 || data.pdev == -1)
 				{
-					
 					data.pdev = g2_open_X11(data.window_w, data.window_h);
 					data.vdev = g2_open_vd();
 					g2_attach(data.vdev, data.pdev);
 					strcpy(data.landing_status,"Em Progresso...");
-
 				}
 
 				printf("vdev: %d - pdev: %d\n", data.vdev, data.pdev);
 				
 				pthread_create(&t_id, NULL, &cockpit_display, &data);
-				/*cockpit_display(&data);*/
-				
 				data.option = -1;
 				break;
 			case 3 :
-				
+
 				break;
 			case 4 :
 				
@@ -85,11 +85,8 @@ int main()
 				break;
 		}
 		
-		
-		
-		
+		/*sleep(1);*/
 	}
-	
 	
 	return 0;
 }
