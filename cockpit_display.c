@@ -4,14 +4,14 @@
 #include <g2_X11.h>
 #include "eagle2014.h"
 
-void * cockpit_display(struct main_data *data)
+void * cockpit_display(void *input)
 {
 
-	
+	struct main_data* data = (struct main_data*)input;
+
 	g2_set_font_size(data->vdev, data->font_size);
 	g2_pen(data->vdev, 1);
 	g2_clear(data->vdev);
-	
 	
 	/*Protype: draw_data(int vdev, char label, float value, char units, int x_pos, int y_pos, int font_size int label_value_dist) */
 	draw_data(*data, "Altitude:", data->altitude, "m", 20, data->window_h - 5 - data->font_size);
