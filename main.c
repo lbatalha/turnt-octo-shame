@@ -25,7 +25,7 @@ int main()
 	data.window_h = 600;
 	data.window_w = 800;
 	data.tempo = 0;
-
+	data.radius = 50;
 	
 	
 	while(1)										/* Main Loop */

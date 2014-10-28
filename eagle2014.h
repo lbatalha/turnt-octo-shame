@@ -3,14 +3,15 @@
 
 struct main_data
 {
-	int option;
 	float tempo, altitude, atitude, h_dist, vel_x, vel_y, fuel, fuel_rate, force_r, force_t, module_mass;
+	
 	char landing_status[32];
-	int pdev;
-	int vdev;
+	
+	int option;
+	int pdev, vdev;
 	int window_h, window_w; 
-	int font_size;
-	int label_value_dist;
+	int font_size, label_value_dist;
+	int radius;
 };
 
 
