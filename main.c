@@ -24,14 +24,14 @@ int main()
 	data.label_value_dist = 10;
 	data.window_h = 600;
 	data.window_w = 800;
-	
+	data.tempo = 0;
 
 	
 	
 	while(1)										/* Main Loop */
 	{
 		
-		/*printf("\033[2J");*/
+		printf("\033[2J");
 		printf("\n");
 		printf("1. Especificação dos dados do módulo e das condições iniciais do voo (utilizar unidades do S.I.).\n");
 		printf("2. Simulação do voo em modo de \"cockpit\".\n");

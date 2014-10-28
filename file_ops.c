@@ -1,9 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "eagle2014.h"
 
-int openfile (struct main_data data)
+int open_file(struct main_data data)
 {
      FILE *fp;
      
-     fp=open("vooLunarCorrente.txt","w");                    /*Abre o Ficheiro*/
+     fp=fopen("vooLunarCorrente.txt","w");                    /*Abre o Ficheiro*/
      
      if(fp==NULL)                                           /*Testa a Abertura do Ficheiro*/
      {
@@ -12,19 +16,19 @@ int openfile (struct main_data data)
      }
      
      /*Cabecalhodo Ficheiro*/
-     fprintf(fp, "%f [kg]\n\n" data.module_mass)                 /*Ver nome variavel*/
-     fprinrf(fp, "tempo[s]\t x[m]\t z[m]\t vx[m/s]\t vz[m/s]\t atitude[graus]\t fuel[kg]\n\n")
+     fprintf(fp, "%f [kg]\n", data.module_mass);                 /*Ver nome variavel*/
+     fprintf(fp, "tempo[s]\t x[m]\t z[m]\t vx[m/s]\t vz[m/s]\t atitude[graus]\t fuel[kg]\n");
      
      fclose(fp);                                            /*Fecha o Ficheiro*/
                
      return 0;    
 }
 
-int writefile (float tempo, float data.h_dist, float data.altitude, float data.vel_x, float data.vel_z, float data.atitude, float data.fuel)
+int write_file(struct main_data data)
 {
      FILE *fp;
      
-     fp=open("vooLunarCorrente.txt", "a");
+     fp=fopen("vooLunarCorrente.txt", "a");
      
      if(fp==NULL)
      {
@@ -32,9 +36,9 @@ int writefile (float tempo, float data.h_dist, float data.altitude, float data.v
           return 1;
      }
      
-     fprintf(fp, "%f\t %f\t %f\t %f\t %f\t %f\t %f\n\n", tempo,data.h_dist,data.altitude,data.vel_x,data.vel_z,data.atitude,data.fuel);
+     fprintf(fp, "%f\t %f\t %f\t %f\t %f\t %f\t %f\n", data.tempo,data.h_dist,data.altitude,data.vel_x,data.vel_y,data.atitude,data.fuel);
      
-     fpclose(fp);
+     fclose(fp);
      
      return 0; 
 }
