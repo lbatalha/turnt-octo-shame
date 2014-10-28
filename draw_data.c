@@ -16,7 +16,7 @@ void draw_data(struct main_data data, char *label, float value, char *units, int
 
 	g2_string(data.pdev, x_pos, y_pos, label);                                /*Draw Label*/
 	g2_string(data.pdev, (data.font_size * data.label_value_dist) + x_pos, y_pos, value_s);      /*Draw Value*/
-	g2_string(data.pdev, (length * data.font_size) + (data.font_size * data.label_value_dist) + x_pos, y_pos, units); /*Draw Units*/
+	g2_string(data.pdev, (data.font_size * data.label_value_dist) + (length * (data.font_size/2)) +  x_pos, y_pos, units); /*Draw Units*/
 	/*printf("Label: %s Value: %s\n", label, value_s); Debug*/
 
 }

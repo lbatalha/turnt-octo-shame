@@ -30,11 +30,11 @@ void * cockpit_display(void *input)
 		draw_data(*data, "Fuel:", data->fuel, "Kg", 20, data->window_h - 10 - 6*data->font_size);
 		draw_data(*data, "Fuel Rate:", data->fuel_rate, "Kg/min", 20, data->window_h - 10 - 7*data->font_size);
 		
-		g2_string(data->pdev, 20, data->window_h - 10 - 8*data->font_size, "Aterragem:");
-		g2_string(data->pdev, (data->font_size * data->label_value_dist) + 20, data->window_h - 10 - 8*data->font_size, data->landing_status);
+		g2_string(data->pdev, 20, data->window_h - 10 - 9*data->font_size, "Aterragem:");
+		g2_string(data->pdev, (data->font_size * data->label_value_dist) + 20, data->window_h - 10 - 9*data->font_size, data->landing_status);
 		
 		draw_data(*data, "FR:", data->force_r, "%%", data->window_w - (data->font_size*10), data->window_h - 10 - 3*data->font_size);
-		draw_data(*data, "FM:", data->force_t, "%%", data->window_w - (data->font_size*10), data->window_h - 10 - 4*data->font_size);
+		draw_data(*data, "FT:", data->force_t, "%%", data->window_w - (data->font_size*10), data->window_h - 10 - 4*data->font_size);
 		
 		g2_flush(data->vdev);
 		sleep(1);
