@@ -4,17 +4,20 @@
 #include <g2_X11.h>
 #include "eagle2014.h"
 
-int pos_graph(float altitude, float h_dist, int x_origin, int y_origin)
+int pos_graph(struct main_data *data)
 {
-	int window_h = 600, window_w = 800;  /* Holds the window height and width */
-	int pdev = NULL, vdev = NULL;        /* Device ident for g2 */
+	  /* Holds the window height and width */
+	        /* Device ident for g2 */
 	
-	pdev = g2_open_X11(window_w , window_h);
-	vdev=g2_open_vd();
-	g2_set_font_size(vdev, font_size);
-	g2_pen(vdev, 1);
-	g2_attach(vdev, pdev);
-	g2_clear(vdev);
+	data->pdev = g2_open_X11(data->window_w , data->window_h);
+	data->vdev = g2_open_vd();
+	g2_attach(data->vdev, data->pdev);
+	
+	g2_clear(data->vdev);
+	g2_pen(data->vdev, 1);
+	g2_set_font_size(data->vdev, font_size);
+	
+
 	/* g2_line(x_origin,  */
 	
 	
