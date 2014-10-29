@@ -28,6 +28,8 @@ void ship_draw(int vdev, float x, float y, float radius, float atitude)
 	right_leg_x = x + (cos(angle + leg_angle) * leg_length);
 	right_leg_y = y + (sin(angle + leg_angle) * leg_length);
 
+	/*Attention: Positive rotation is counter-clockwise*/
+
 	g2_set_line_width(vdev, (radius*2) / 10);
 	g2_line(vdev, x, y, left_leg_x, left_leg_y);
 	g2_line(vdev, x, y, right_leg_x, right_leg_y);

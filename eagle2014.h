@@ -1,5 +1,6 @@
 #ifndef EAGLE2014_H_INCLUDED
 #define EAGLE2014_H_INCLUDED
+#define _BSD_SOURCE
 
 struct main_data
 {
@@ -12,6 +13,9 @@ struct main_data
 	int window_h, window_w; 
 	int font_size, label_value_dist;
 	int radius;
+
+	double mouse_x, mouse_y;
+	unsigned int mouse_button;
 };
 
 
@@ -19,6 +23,7 @@ void * cockpit_display(void *input);
 void draw_data(struct main_data data, char *label, float value, char *units, int x_pos, int y_pos );
 void spec_input(struct main_data *data);
 void ship_draw(int vdev, float x, float y, float radius, float atitude);
+void mouse_control(struct main_data *data);
 
 int open_file(struct main_data data);
 int write_file(struct main_data data);
