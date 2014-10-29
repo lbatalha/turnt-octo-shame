@@ -21,7 +21,7 @@ void input_check(char *label, float *input)
 void spec_input(struct main_data *data)
 {
 	printf("\033[2J");
-	printf("\n======== Especificação dos dados do módulo ========");
+	printf("\n======== Especificacao dos dados do módulo ========");
 	
 	input_check("\nMassa do Modulo (Kg): ", &data->module_mass); 
 	input_check("Quantidade de Combustivel (Kg): ", &data->fuel);
@@ -29,7 +29,7 @@ void spec_input(struct main_data *data)
 	printf("\n\n======== Dados iniciais de voo ========");
 	
 	input_check("\nAltitude Inicial (m): ", &data->altitude);
-	input_check("Atitude (º): ", &data->atitude);
+	input_check("Atitude (graus): ", &data->atitude);
 	input_check("Distancia Horizontal (m): ", &data->h_dist);
 	input_check("Velocidade Horizontal (m/s): ", &data->vel_x);
 	input_check("Velocidade Vertical (m/s): ", &data->vel_y);
