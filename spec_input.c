@@ -21,7 +21,7 @@ void input_check(char *label, float *input)
 void spec_input(struct main_data *data)
 {
 	printf("\033[2J");
-	printf("\n======== Especificacao dos dados do módulo ========");
+	printf("\n======== Especificacao dos dados do modulo ========");
 	
 	input_check("\nMassa do Modulo (Kg): ", &data->module_mass); 
 	input_check("Quantidade de Combustivel (Kg): ", &data->fuel);
