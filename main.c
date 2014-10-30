@@ -26,7 +26,7 @@ int main()
 	data.window_h = 600;
 	data.window_w = 800;
 	data.tempo = 0;
-	data.radius = 50;
+	data.radius = 5;
 	data.force_t = 0;
 	data.force_r = 0;
 	
