@@ -43,7 +43,7 @@ void * cockpit_display(void *input)
 		mouse_control(data);
 
 		g2_flush(data->vdev);
-		usleep(200000);
+		usleep(100000);
 	}
 	
 	return 0;

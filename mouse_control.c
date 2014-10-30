@@ -21,7 +21,7 @@ void mouse_control(struct main_data *data)
 	g2_string(data->vdev, data->window_w - 175, 75, " -FT");
 	g2_string(data->vdev, data->window_w - 250, 75, " -FR");
 	g2_string(data->vdev, data->window_w - 175, 150, " +FT");
-/*debug*/printf("x: %f y: %f mouse: %i\n", data->mouse_x, data->mouse_y, data->mouse_button);
+/*debug*//*printf("x: %f y: %f mouse: %i\n", data->mouse_x, data->mouse_y, data->mouse_button);*/
 	
 	if( data->force_r < 100 && data->mouse_button > 128 && data->mouse_x < (data->window_w - 50) && data->mouse_x > (data->window_w - 100) && data->mouse_y > 50 && data->mouse_y < 100){
 		data->force_r = data->force_r + 1;

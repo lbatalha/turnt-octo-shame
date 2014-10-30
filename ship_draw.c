@@ -1,3 +1,4 @@
+#define _BSD_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -6,7 +7,7 @@
 #include <g2_X11.h>
 #include "eagle2014.h"
 
-#define M_PI 3.14159265358979323846264338327
+
 
 void ship_draw(int vdev, float x, float y, float radius, float atitude)
 {

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdio_ext.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include "eagle2014.h" 
 
 void input_check(char *label, float *input)
@@ -34,8 +33,5 @@ void spec_input(struct main_data *data)
 	input_check("Velocidade Horizontal (m/s): ", &data->vel_x);
 	input_check("Velocidade Vertical (m/s): ", &data->vel_y);
 	printf("%f %f %f %f %f\n", data->altitude, data->atitude, data->h_dist, data->vel_x, data->vel_y);
-
-	/* printf("\n\n======== Ponto de Alunagem ========");
-	printf("\nPonto de Alunagem (x): "); scanf("%f", vel_y_ptr); */
 	
 }
