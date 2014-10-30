@@ -23,16 +23,16 @@ void mouse_control(struct main_data *data)
 	g2_string(data->vdev, data->window_w - 175, 150, " +FT");
 /*debug*/printf("x: %f y: %f mouse: %i\n", data->mouse_x, data->mouse_y, data->mouse_button);
 	
-	if( data->mouse_button > 128 && data->mouse_x < (data->window_w - 50) && data->mouse_x > (data->window_w - 100) && data->mouse_y > 50 && data->mouse_y < 100){
+	if( data->force_r < 100 && data->mouse_button > 128 && data->mouse_x < (data->window_w - 50) && data->mouse_x > (data->window_w - 100) && data->mouse_y > 50 && data->mouse_y < 100){
 		data->force_r = data->force_r + 1;
 	}
-	if( data->mouse_button > 128 && data->mouse_x < (data->window_w - 125) && data->mouse_x > (data->window_w - 175) && data->mouse_y > 50 && data->mouse_y < 100){
+	if( data->force_t > 0 && data->mouse_button > 128 && data->mouse_x < (data->window_w - 125) && data->mouse_x > (data->window_w - 175) && data->mouse_y > 50 && data->mouse_y < 100){
 		data->force_t = data->force_t - 1;
 	}
-	if( data->mouse_button > 128 && data->mouse_x < (data->window_w - 200) && data->mouse_x > (data->window_w - 250) && data->mouse_y > 50 && data->mouse_y < 100){
+	if( data->force_r > -100 && data->mouse_button > 128 && data->mouse_x < (data->window_w - 200) && data->mouse_x > (data->window_w - 250) && data->mouse_y > 50 && data->mouse_y < 100){
 		data->force_r = data->force_r - 1;
 	}
-	if( data->mouse_button > 128 && data->mouse_x < (data->window_w - 125) && data->mouse_x > (data->window_w - 175) && data->mouse_y > 125&& data->mouse_y < 175){
+	if( data->force_t < 100 && data->mouse_button > 128 && data->mouse_x < (data->window_w - 125) && data->mouse_x > (data->window_w - 175) && data->mouse_y > 125&& data->mouse_y < 175){
 		data->force_t = data->force_t + 1;
 	}
 

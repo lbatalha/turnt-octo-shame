@@ -87,7 +87,7 @@ int main()
 				break;
 		}
 		
-		usleep(500);
+		usleep(10000);
 	}
 	
 	return 0;

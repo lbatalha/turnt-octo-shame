@@ -1,7 +1,6 @@
 #ifndef EAGLE2014_H_INCLUDED
 #define EAGLE2014_H_INCLUDED
-#define _BSD_SOURCE
-#define M_PI 3.14159265358979323846264338327
+
 
 struct main_data
 {
@@ -28,7 +27,7 @@ void draw_data(struct main_data data, char *label, float value, char *units, int
 void spec_input(struct main_data *data);
 void ship_draw(int vdev, float x, float y, float radius, float atitude);
 void mouse_control(struct main_data *data);
-void fisica(struct main_data *data);
+void *fisica(void *input);
 
 int open_file(struct main_data data);
 int write_file(struct main_data data);

@@ -1,10 +1,13 @@
+#define _BSD_SOURCE
 #include <math.h>
+#include <unistd.h>
 #include "eagle2014.h"
 
-void fisica(struct main_data *data)
+void *fisica(void *input)
 {
 
-	
+	struct main_data* data = (struct main_data*)input;
+
 	float grav_lua=1.622;				/*Gravidade da Lua*/
 	float beta=0.255;				/*Consumo Combustivel*/
 	float tt=450;					/*impulso principal*/
@@ -33,5 +36,9 @@ void fisica(struct main_data *data)
 	data->fuel_rate = beta * tt * data->force_t * data->tempo + beta * tr * data->force_r * data->tempo;
 
 	data->fuel = data->fuel - data->fuel_rate;				/*consumo fuel*/
+
+	usleep(1000);
+
+	return 0;
 	
 }
