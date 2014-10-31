@@ -1,3 +1,11 @@
+/*
+Grupo 74
+
+63282 - Artur Guilherme Rodrigues de Vasconcelos
+70037 - Luis Filipe Ramos Batalha
+
+Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
+*/
 #define _BSD_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +22,7 @@
 int main()
 {
 	struct main_data data;
-	pthread_t t_id;
+	pthread_t t_cockpit, t_fisica;
 
 	/*int t_return;*/
 
@@ -30,12 +38,13 @@ int main()
 	data.force_t = 0;
 	data.force_r = 0;
 	
+
 	while(1)										/* Main Loop */
 	{
 		
-		printf("\033[2J");
+		/*printf("\033[2J");*/
 		printf("\n");
-		printf(" 1. Especificação dos dados do módulo e das condições iniciais do voo (utilizar unidades do S.I.).\n");
+		printf(" 1. Especificação dos dados do módulo e das condições iniciais do voo (Unidades S.I.).\n");
 		printf(" 2. Simulação do voo em modo de \"cockpit\".\n");
 		printf(" 3. Apresentação em modo gráfico da trajectória do módulo.\n");
 		printf(" 4. Definição do perfil  da superfície lunar.\n");
@@ -67,7 +76,9 @@ int main()
 
 	/*debug*/	/*printf("vdev: %d - pdev: %d\n", data.vdev, data.pdev);*/
 				
-				pthread_create(&t_id, NULL, &cockpit_display, &data);
+				pthread_create(&t_cockpit, NULL, &cockpit_display, &data);
+				pthread_create(&t_fisica, NULL, &fisica, &data);
+
 				data.option = -1;
 				break;
 			case 3 :
@@ -83,7 +94,9 @@ int main()
 				
 				exit(0);
 			default :
-				data.pdev = -1; data.vdev = -1;
+				if(data.vdev != -1 || data.pdev != -1)
+					data.pdev = -1; data.vdev = -1;
+
 				break;
 		}
 		

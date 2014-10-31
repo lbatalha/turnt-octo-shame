@@ -1,3 +1,11 @@
+/*
+Grupo 74
+
+63282 - Artur Guilherme Rodrigues de Vasconcelos
+70037 - Luis Filipe Ramos Batalha
+
+Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <g2.h>
