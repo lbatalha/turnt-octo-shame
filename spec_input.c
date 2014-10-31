@@ -1,8 +1,8 @@
 /*
 Grupo 74
 
-63282 - Artur Guilherme Rodrigues de Vasconcelos
-70037 - Luis Filipe Ramos Batalha
+	63282 - Artur Guilherme Rodrigues de Vasconcelos
+>	70037 - Luis Filipe Ramos Batalha
 
 Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 */
@@ -41,4 +41,5 @@ void spec_input(struct main_data *data)
 	input_check("Velocidade Horizontal (m/s): ", &data->vel_x);
 	input_check("Velocidade Vertical (m/s): ", &data->vel_z);
 	
+	data->atitude = -data->atitude; /*Inverte Rotacao*/
 }

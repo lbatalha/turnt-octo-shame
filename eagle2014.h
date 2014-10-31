@@ -1,8 +1,8 @@
 /*
 Grupo 74
 
-63282 - Artur Guilherme Rodrigues de Vasconcelos
-70037 - Luis Filipe Ramos Batalha
+	63282 - Artur Guilherme Rodrigues de Vasconcelos
+>	70037 - Luis Filipe Ramos Batalha
 
 Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 */
@@ -14,7 +14,6 @@ struct main_data
 {
 	float tempo, altitude, atitude, h_dist, vel_x, vel_z, fuel, fuel_rate, force_r, force_t, module_mass;
 	float vel_ang, a_ang, m_total, ax, az, tempo_t;
-	double mouse_x, mouse_y;
 
 	char landing_status[32];
 	
@@ -23,8 +22,7 @@ struct main_data
 	int window_h, window_w; 
 	int font_size, label_value_dist;
 	int radius;
-	
-	unsigned int mouse_button;
+	int terminate_cp, cp_return;
 
 	FILE *fp;
 

@@ -1,8 +1,8 @@
 /*
 Grupo 74
 
-63282 - Artur Guilherme Rodrigues de Vasconcelos
-70037 - Luis Filipe Ramos Batalha
+>	63282 - Artur Guilherme Rodrigues de Vasconcelos
+	70037 - Luis Filipe Ramos Batalha
 
 Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 */
@@ -21,17 +21,17 @@ void *fisica(void *input)
 	float grav_lua = 1.622;           /*Gravidade da Lua*/
 	float beta = 0.0005;               /*Consumo Combustivel*/
 	float impulse_t = 45000;            /*impulso principal*/
-	float impulse_r = 1760;           /*impulso rotaçao*/
+	float impulse_r = 176;           /*impulso rotaçao*/
 	float inercia;
 	float force_trans, force_rot;
 	int stop = 0;
 	data->tempo_t = 0;
-	
-	sleep(2);
+
+	sleep(2); /*Dar tempo ao utilizador para comandar*/
 
 	data->fp=fopen("vooLunarCorrente.txt", "a");
 
-	while(stop != 1)
+	while(stop != 1 && data->terminate_cp != 1)
 	{
 		if(data->fuel <= 5){
 			impulse_t = 0;

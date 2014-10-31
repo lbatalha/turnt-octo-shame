@@ -1,8 +1,8 @@
 /*
 Grupo 74
 
-63282 - Artur Guilherme Rodrigues de Vasconcelos
-70037 - Luis Filipe Ramos Batalha
+	63282 - Artur Guilherme Rodrigues de Vasconcelos
+>	70037 - Luis Filipe Ramos Batalha
 
 Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 */
@@ -22,9 +22,7 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 int main()
 {
 	struct main_data data;
-	pthread_t t_cockpit, t_fisica, t_graph;
-
-	/*int t_return;*/
+	pthread_t t_cockpit = 0, t_fisica = 0, t_graph = 0;
 
 	data.option = -1;
 	data.pdev = -1;
@@ -37,7 +35,7 @@ int main()
 	data.radius = 5;
 	data.force_t = 0;
 	data.force_r = 0;
-	
+	data.terminate_cp = 0;
 
 	while(1)										/* Main Loop */
 	{
@@ -54,7 +52,7 @@ int main()
 		printf(" Escolha uma opção: ");
 		
 		if((scanf("%d", &data.option)) < 1){
-			printf("Opção Invalida");
+			printf("Opção Invalida\n");
 			__fpurge(stdin);
 		}
 		
@@ -72,13 +70,18 @@ int main()
 					g2_attach(data.vdev, data.pdev);
 					strcpy(data.landing_status,"Ready");
 				}
-
+				
 				init_file(data); /*Inicializa ficheiro, cria cabecalho*/
 				pthread_create(&t_cockpit, NULL, &cockpit_display, &data);
 				pthread_create(&t_fisica, NULL, &fisica, &data);
 				data.option = -1;
 				break;
 			case 3 :
+				data.terminate_cp = 1;
+				pthread_join(t_cockpit, NULL);
+				pthread_join(t_fisica, NULL);
+				data.terminate_cp = 0;
+				
 				pthread_create(&t_graph, NULL, &pos_graph, &data);
 				data.option = -1;
 				break;

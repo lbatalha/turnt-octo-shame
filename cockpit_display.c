@@ -1,8 +1,8 @@
 ﻿/*
 Grupo 74
 
-63282 - Artur Guilherme Rodrigues de Vasconcelos
-70037 - Luis Filipe Ramos Batalha
+	63282 - Artur Guilherme Rodrigues de Vasconcelos
+>	70037 - Luis Filipe Ramos Batalha
 
 Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 */
@@ -17,12 +17,12 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 void *cockpit_display(void *input)
 {
 
-	
 	struct main_data* data = (struct main_data*)input;
-
-
 	
-	while(1)
+	data->terminate_cp = 0;
+	data->cp_return = -1;
+	
+	while(data->terminate_cp !=1)
 	{
 		/*printf("%f %f %f %f %f\n", data->altitude, data->atitude, data->h_dist, data->vel_x, data->vel_z);*/
 		g2_clear(data->vdev);
@@ -32,7 +32,7 @@ void *cockpit_display(void *input)
 		
 		/*Protype: void draw_data(struct main_data data, char *label, float value, char *units, int x_pos, int y_pos )*/
 		draw_data(*data, "Altitude:", data->altitude, "m", 20, data->window_h - 5 - data->font_size);
-		draw_data(*data, "Atitude:", data->atitude, "degree", 20, data->window_h - 10 - 2*data->font_size);
+		draw_data(*data, "Atitude:", -data->atitude, "degree", 20, data->window_h - 10 - 2*data->font_size);
 		draw_data(*data, "Distancia Horizontal:", data->h_dist, "m", 20, data->window_h - 10 - 3*data->font_size);
 		draw_data(*data, "Velocidade x:", data->vel_x, "m/s", 20, data->window_h - 10 - 4*data->font_size);
 		draw_data(*data, "Velocidade z:", data->vel_z, "m/s", 20, data->window_h - 10 - 5*data->font_size);
@@ -52,7 +52,7 @@ void *cockpit_display(void *input)
 		g2_flush(data->vdev);
 		usleep(100000);
 	}
-	
+	data->cp_return = 0;
 	return 0;
 }
 
