@@ -18,32 +18,48 @@ void *pos_graph(void *input)
 {
 
 	int ef = 1;
+	float h_max = 0, altitude_max = 0, h_min = 0;
 
 	struct main_data* data = (struct main_data*)input;
 
 	data->pdev = g2_open_X11(data->window_w , data->window_h);
 	data->vdev = g2_open_vd();
 	g2_attach(data->vdev, data->pdev);
-	
-	while(ef != -1)
+
+	data->fp = fopen("vooLunarCorrente.txt", "r");
+	if(data->fp == NULL){
+		printf("ERRO, Falha ao Abrir o Ficheiro\n");
+
+	}
+	else while(ef != -2) /*Loop que verifica os maximos e minimos*/
 	{
-		printf("%d\n", ef);
+		ef = read_file(data, &ef);
+
+		if(altitude_max < data->altitude)
+			altitude_max = data->altitude; /*Verifica altitude maxima*/
+		if(h_max < data->h_dist)
+			h_max = data->h_dist;         /*Verifica pos x maxima*/
+		if(h_min > data->h_dist)
+			h_min = data->h_dist;         /*Verifica pos x minima*/
+	}
+	fclose(data->fp);
+	ef = 1;
+	
+	data->fp = fopen("vooLunarCorrente.txt", "r");
+	if(data->fp == NULL){
+		printf("ERRO, Falha ao Abrir o Ficheiro\n");
+	}
+	else while(ef != -2)
+	{
 		g2_clear(data->vdev);
 		g2_pen(data->vdev, 1);
 		g2_set_font_size(data->vdev, data->font_size);
 		
 		ef = read_file(data, &ef);
-
 		
-		/*printf("%.2e\t%.2e\t%.2e\t%.2e\t%.2e\t%.2e\t%.2e\n", data->tempo, data->h_dist, data->altitude, data->vel_x, data->vel_z, data->atitude, data->fuel);*/
+		usleep(100000);
 		
-		usleep(1000000);
-		
-
-		if(ef == -2){
-			ef = -1;
-			g2_close(data->vdev);
-		}
-	}	
+	}
+	fclose(data->fp);
 	return 0;
 }

@@ -25,8 +25,11 @@ void *fisica(void *input)
 	float inercia;
 	float force_trans, force_rot;
 	int stop = 0;
-
+	data->tempo_t = 0;
+	
 	sleep(2);
+
+	data->fp=fopen("vooLunarCorrente.txt", "a");
 
 	while(stop != 1)
 	{
@@ -40,7 +43,8 @@ void *fisica(void *input)
 		force_rot = data->force_r / 100;
 
 		data->tempo = 0.1;
-		
+		data->tempo_t = data->tempo_t + data->tempo;
+
 		data->m_total = data->module_mass + data->fuel;	                             /*Massa Total*/
 
 		inercia = 0.4 * data->m_total * pow(data->radius,2);                         /*Momento de Inercia*/
@@ -84,7 +88,7 @@ void *fisica(void *input)
 
 		usleep(10000);         /*~0.1s*/
 	}
-
+	fclose(data->fp);
 	return 0;
 	
 }

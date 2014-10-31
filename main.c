@@ -42,7 +42,7 @@ int main()
 	while(1)										/* Main Loop */
 	{
 		
-		/*printf("\033[2J");*/
+		printf("\033[2J");
 		printf("\n");
 		printf(" 1. Especificação dos dados do módulo e das condições iniciais do voo (Unidades S.I.).\n");
 		printf(" 2. Simulação do voo em modo de \"cockpit\".\n");
@@ -62,7 +62,6 @@ int main()
 		{
 			case 1 :
 				spec_input(&data);
-				printf("%f %f %f %f %f\n", data.altitude, data.atitude, data.h_dist, data.vel_x, data.vel_z);
 				data.option = -1;
 				break;
 			case 2 :
@@ -74,10 +73,9 @@ int main()
 					strcpy(data.landing_status,"Ready");
 				}
 
-				init_file(data);
+				init_file(data); /*Inicializa ficheiro, cria cabecalho*/
 				pthread_create(&t_cockpit, NULL, &cockpit_display, &data);
 				pthread_create(&t_fisica, NULL, &fisica, &data);
-
 				data.option = -1;
 				break;
 			case 3 :
@@ -85,13 +83,12 @@ int main()
 				data.option = -1;
 				break;
 			case 4 :
-				
+				/*por implementar*/
 				break;
 			case 5 :
-				
+				/*por implementar*/
 				break;
 			case 0 :
-				
 				exit(0);
 			default :
 				if(data.vdev != -1 || data.pdev != -1)
