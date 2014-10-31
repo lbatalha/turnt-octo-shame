@@ -12,7 +12,7 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 
 struct main_data
 {
-	float tempo, altitude, atitude, h_dist, vel_x, vel_y, fuel, fuel_rate, force_r, force_t, module_mass;
+	float tempo, altitude, atitude, h_dist, vel_x, vel_z, fuel, fuel_rate, force_r, force_t, module_mass;
 	
 	char landing_status[32];
 	
@@ -37,7 +37,8 @@ void ship_draw(int vdev, float x, float y, float radius, float atitude);
 void mouse_control(struct main_data *data);
 void *fisica(void *input);
 
-int open_file(struct main_data data);
+int init_file(struct main_data data);
 int write_file(struct main_data data);
+int read_file(struct main_data *data);
 
 #endif

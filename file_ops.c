@@ -11,43 +11,73 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 #include <unistd.h>
 #include "eagle2014.h"
 
-int open_file(struct main_data data)
+int init_file(struct main_data data)
 {
      FILE *fp;
      
-     fp=fopen("vooLunarCorrente.txt","w");                    /*Abre o Ficheiro*/
+     fp=fopen("vooLunarCorrente.txt","w");
      
-     if(fp==NULL)                                           /*Testa a Abertura do Ficheiro*/
+     if(fp==NULL)
      {
           printf("ERRO, Falha ao Abrir o Ficheiro");
           return 1;     
      }
      
      /*Cabecalhodo Ficheiro*/
-     fprintf(fp, "%f [kg]\n", data.module_mass);                 /*Ver nome variavel*/
-     fprintf(fp, "tempo[s]\t x[m]\t z[m]\t vx[m/s]\t vz[m/s]\t atitude[graus]\t fuel[kg]\n");
+     fprintf(fp, "%f[kg]\n", data.module_mass);
+     fprintf(fp, "tempo[s]\tx[m]\tz[m]\tvx[m/s]\tvz[m/s]\tatitude[graus]\tfuel[kg]\n");
      
-     fclose(fp);                                            /*Fecha o Ficheiro*/
+     fclose(fp);
                
      return 0;    
 }
 
 int write_file(struct main_data data)
 {
-     FILE *fp;
+     static FILE *fp;
      
-     fp=fopen("vooLunarCorrente.txt", "a");
+     if(fp == NULL)
+          fp=fopen("vooLunarCorrente.txt", "a");
      
-     if(fp==NULL)
+     if(fp == NULL)
      {
-          printf("ERRO, Falha ao Abrir o Ficheiro");
+          printf("ERRO, Falha ao Abrir o Ficheiro\n");
           return 1;
      }
      
-     fprintf(fp, "%f\t %f\t %f\t %f\t %f\t %f\t %f\n", data.tempo,data.h_dist,data.altitude,data.vel_x,data.vel_y,data.atitude,data.fuel);
-     
-     fclose(fp);
+     fprintf(fp, "%.2e\t%.2e\t%.2e\t%.2e\t%.2e\t%.2e\t%.2e\n", data.tempo, data.h_dist, data.altitude, data.vel_x, data.vel_z, data.atitude, data.fuel);
+     /*fclose(fp);*/
      
      return 0; 
+}
+
+int read_file(struct main_data *data)
+{
+     static FILE *fp;
+     char line[75];
+     int line_num = 1;
+
+
+     if(fp == NULL)
+          fp=fopen("vooLunarCorrente.txt", "r");
+     
+     if(fp == NULL)
+     {
+          printf("ERRO, Falha ao Abrir o Ficheiro\n");
+          return 1;
+     }
+     if(fgets(line, 72, fp) == NULL);                
+          line_num = -1;
+     if(line_num == 1)
+          sscanf(line, "%f[kg]\n", &data->module_mass);
+     if(line_num == 2)
+          sscanf(line, "tempo[s]\tx[m]\tz[m]\tvx[m/s]\tvz[m/s]\tatitude[graus]\tfuel[kg]\n");
+     if(line_num > 2)
+          sscanf(line, "%f\t%f\t%f\t%f\t%f\t%f\t%f\n", &data->tempo, &data->h_dist, &data->altitude, &data->vel_x, &data->vel_z, &data->atitude, &data->fuel);
+     
+     line_num = line_num + 1;
+     
+
+     return line_num;
 }
 

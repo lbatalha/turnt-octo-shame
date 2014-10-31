@@ -62,7 +62,7 @@ int main()
 		{
 			case 1 :
 				spec_input(&data);
-				printf("%f %f %f %f %f\n", data.altitude, data.atitude, data.h_dist, data.vel_x, data.vel_y);
+				printf("%f %f %f %f %f\n", data.altitude, data.atitude, data.h_dist, data.vel_x, data.vel_z);
 				data.option = -1;
 				break;
 			case 2 :
@@ -73,9 +73,9 @@ int main()
 					g2_attach(data.vdev, data.pdev);
 					strcpy(data.landing_status,"Em Progresso...");
 				}
-
 	/*debug*/	/*printf("vdev: %d - pdev: %d\n", data.vdev, data.pdev);*/
 				
+				init_file(data);
 				pthread_create(&t_cockpit, NULL, &cockpit_display, &data);
 				pthread_create(&t_fisica, NULL, &fisica, &data);
 
@@ -100,7 +100,7 @@ int main()
 				break;
 		}
 		
-		usleep(10000);
+		usleep(100000);
 	}
 	
 	return 0;
