@@ -40,6 +40,5 @@ void spec_input(struct main_data *data)
 	input_check("Distancia Horizontal (m): ", &data->h_dist);
 	input_check("Velocidade Horizontal (m/s): ", &data->vel_x);
 	input_check("Velocidade Vertical (m/s): ", &data->vel_z);
-	printf("%f %f %f %f %f\n", data->altitude, data->atitude, data->h_dist, data->vel_x, data->vel_z);
 	
 }

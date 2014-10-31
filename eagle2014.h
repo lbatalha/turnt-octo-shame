@@ -30,15 +30,18 @@ struct main_data
 };
 
 
-void * cockpit_display(void *input);
+
 void draw_data(struct main_data data, char *label, float value, char *units, int x_pos, int y_pos );
 void spec_input(struct main_data *data);
 void ship_draw(int vdev, float x, float y, float radius, float atitude);
 void mouse_control(struct main_data *data);
+
 void *fisica(void *input);
+void *pos_graph(void *input);
+void *cockpit_display(void *input);
 
 int init_file(struct main_data data);
 int write_file(struct main_data data);
-int read_file(struct main_data *data);
+int read_file(struct main_data *data, int *line_num);
 
 #endif

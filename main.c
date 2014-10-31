@@ -22,7 +22,7 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 int main()
 {
 	struct main_data data;
-	pthread_t t_cockpit, t_fisica;
+	pthread_t t_cockpit, t_fisica, t_graph;
 
 	/*int t_return;*/
 
@@ -71,10 +71,9 @@ int main()
 					data.pdev = g2_open_X11(data.window_w, data.window_h);
 					data.vdev = g2_open_vd();
 					g2_attach(data.vdev, data.pdev);
-					strcpy(data.landing_status,"Em Progresso...");
+					strcpy(data.landing_status,"Ready");
 				}
-	/*debug*/	/*printf("vdev: %d - pdev: %d\n", data.vdev, data.pdev);*/
-				
+
 				init_file(data);
 				pthread_create(&t_cockpit, NULL, &cockpit_display, &data);
 				pthread_create(&t_fisica, NULL, &fisica, &data);
@@ -82,7 +81,8 @@ int main()
 				data.option = -1;
 				break;
 			case 3 :
-
+				pthread_create(&t_graph, NULL, &pos_graph, &data);
+				data.option = -1;
 				break;
 			case 4 :
 				

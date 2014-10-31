@@ -14,7 +14,7 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 #include <g2_X11.h>
 #include "eagle2014.h"
 
-void * cockpit_display(void *input)
+void *cockpit_display(void *input)
 {
 
 	

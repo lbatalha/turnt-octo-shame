@@ -10,6 +10,7 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 #include <math.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 #include "eagle2014.h"
 
 void *fisica(void *input)
@@ -23,23 +24,18 @@ void *fisica(void *input)
 	float impulse_r = 1760;           /*impulso rotaçao*/
 	float inercia;
 	float force_trans, force_rot;
-	
-	
-	data->module_mass = 2000;
-	data->fuel = 8200;
-	data->atitude = 0;
-	data->altitude = 0;
+	int stop = 0;
 
-	printf("Pre-fisica %f %f %f %f \n", data->vel_z, data->vel_x, data->module_mass, data->atitude);
 	sleep(2);
 
-	while(1)
+	while(stop != 1)
 	{
 		if(data->fuel <= 5){
 			impulse_t = 0;
-			impulse_r = 0;                                                           /*If fuel is below 5Kg, force engine stop*/
+			impulse_r = 0;
+            /*If fuel is below 5Kg, force engine stop*/
 		}
-
+		
 		force_trans = data->force_t / 100;
 		force_rot = data->force_r / 100;
 
@@ -69,9 +65,24 @@ void *fisica(void *input)
 
 		data->fuel = data->fuel - data->fuel_rate;                                  /*consumo fuel*/
 
+
 		write_file(*data);
 
-		usleep(100000);         /*~0.1s*/
+		if( (((data->altitude + data->radius) > 0) && ((data->altitude + data->radius) < 1)) && (fabs(data->atitude) < 5) && (fabs(data->vel_z) < 0.1) && (fabs(data->vel_x) < 0.05))
+		{
+			/*Check for successful landing, and exit the physics function*/
+			strcpy(data->landing_status, "SUCCESS!!");
+			stop = 1;
+		}else if( ((data->altitude + data->radius) > 1)){
+			/*If altitude is over safe landing then landing in progress*/
+			strcpy(data->landing_status, "In Progress...");
+		}else if(((data->altitude + data->radius) < 1) && ((fabs(data->atitude) > 5) || (fabs(data->vel_z) > 0.1) || (fabs(data->vel_x) > 0.05))){
+			/*failure, stop physics calc*/
+			strcpy(data->landing_status, "Failed!");
+			stop = 1;
+		}
+
+		usleep(10000);         /*~0.1s*/
 	}
 
 	return 0;
