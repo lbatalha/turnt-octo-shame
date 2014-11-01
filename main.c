@@ -71,7 +71,7 @@ int main()
 					strcpy(data.landing_status,"Ready");
 				}
 				
-				init_file(data); /*Inicializa ficheiro, cria cabecalho*/
+				init_file(&data); /*Inicializa ficheiro, cria cabecalho*/
 				pthread_create(&t_cockpit, NULL, &cockpit_display, &data);
 				pthread_create(&t_fisica, NULL, &fisica, &data);
 				data.option = -1;

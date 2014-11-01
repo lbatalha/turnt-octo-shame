@@ -29,7 +29,7 @@ void *fisica(void *input)
 
 	sleep(2); /*Dar tempo ao utilizador para comandar*/
 
-	data->fp=fopen("vooLunarCorrente.txt", "a");
+	init_file(data); /*Inicializa ficheiro, cria cabecalho*/
 
 	while(stop != 1 && data->terminate_cp != 1)
 	{
@@ -70,7 +70,7 @@ void *fisica(void *input)
 		data->fuel = data->fuel - data->fuel_rate;                                  /*consumo fuel*/
 
 
-		write_file(*data);
+		write_file(data);
 
 		if( (((data->altitude + data->radius) > 0) && ((data->altitude + data->radius) < 1)) && (fabs(data->atitude) < 5) && (fabs(data->vel_z) < 0.1) && (fabs(data->vel_x) < 0.05))
 		{

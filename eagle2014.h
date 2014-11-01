@@ -40,8 +40,8 @@ void *fisica(void *input);
 void *pos_graph(void *input);
 void *cockpit_display(void *input);
 
-int init_file(struct main_data data);
-int write_file(struct main_data data);
-int read_file(struct main_data *data, int *line_num);
+int init_file(struct main_data *data);
+int write_file(struct main_data *data);
+int read_file(struct main_data *data, int line_num, FILE *fp);
 
 #endif

@@ -1,7 +1,7 @@
 /*
 Grupo 74
 
-	63282 - Artur Guilherme Rodrigues de Vasconcelos
+63282 - Artur Guilherme Rodrigues de Vasconcelos
 >70037 - Luis Filipe Ramos Batalha
 
 Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
@@ -26,25 +26,28 @@ void *pos_graph(void *input)
 
 	struct main_data* data = (struct main_data*)input;
 
+	FILE *fp;
 
-
-	data->fp = fopen("vooLunarCorrente.txt", "r");
-	if(data->fp == NULL){
+	fp = fopen("vooLunarCorrente.txt", "r");
+	if(fp == NULL){
 		printf("ERRO, Falha ao Abrir o Ficheiro\n");
 
 	}
-	else while(ef != -2) /*Loop que verifica os maximos e minimos*/
+	else
 	{
-		ef = read_file(data, &ef);
+		while(ef != -2) /*Loop que verifica os maximos e minimos*/
+		{
+			ef = read_file(data, ef, fp);
 
-		if(altitude_max < data->altitude)
-			altitude_max = data->altitude; /*Verifica altitude maxima*/
-		if(h_max < data->h_dist)
-			h_max = data->h_dist;         /*Verifica pos x maxima*/
-		if(h_min > data->h_dist)
-			h_min = data->h_dist;         /*Verifica pos x minima*/
+			if(altitude_max < data->altitude)
+				altitude_max = data->altitude; /*Verifica altitude maxima*/
+			if(h_max < data->h_dist)
+				h_max = data->h_dist;         /*Verifica pos x maxima*/
+			if(h_min > data->h_dist)
+				h_min = data->h_dist;         /*Verifica pos x minima*/
+		}
 	}
-	fclose(data->fp);
+
 	ef = 1;
 
 	avg_x = (h_max/2) / (fabs(h_min)/2+0.01); 
@@ -54,7 +57,7 @@ void *pos_graph(void *input)
 	
 	origin_x = data->window_w / (2*avg_x) + 20;
 	origin_y = data->font_size + 20;
-	
+	printf("%f %f %f %f", origin_x, origin_y, factor_x, factor_y);
 	data->pdev = g2_open_X11(data->window_w , data->window_h);
 	data->vdev = g2_open_vd();
 	g2_attach(data->vdev, data->pdev);
@@ -71,20 +74,22 @@ void *pos_graph(void *input)
 
 	g2_pen(data->vdev, 3);
 	
-	data->fp = fopen("vooLunarCorrente.txt", "r");
 	if(data->fp == NULL){
 		printf("ERRO, Falha ao Abrir o Ficheiro\n");
 	}
-	else while(ef != -2)
+	else 
 	{
-		
-		ef = read_file(data, &ef);
-		/*DEBUG*//*printf("%e\t%e\t%e\t%e\t%e\t%e\t%e\n", data->tempo_t, data->h_dist, data->altitude, data->vel_x, data->vel_z, data->atitude, data->fuel);*/
-		/*g2_filled_circle(data->vdev, data->h_dist * factor_x + 20, data->altitude*factor_y + 20, 2);*/
-		g2_plot(data->vdev, data->h_dist * factor_x + 20, data->altitude*factor_y + 20);
-		g2_flush(data->vdev);
+		while(ef != -2)
+		{
+			
+			ef = read_file(data, ef, fp);
+			/*DEBUG*//*printf("%e\t%e\t%e\t%e\t%e\t%e\t%e\n", data->tempo_t, data->h_dist, data->altitude, data->vel_x, data->vel_z, data->atitude, data->fuel);*/
+			/*g2_filled_circle(data->vdev, data->h_dist * factor_x + 20, data->altitude*factor_y + 20, 2);*/
+			g2_plot(data->vdev, data->h_dist * factor_x + 20, data->altitude*factor_y + 20);
+			g2_flush(data->vdev);
 
+		}
 	}
-	fclose(data->fp);
+	fclose(fp);
 	return 0;
 }
