@@ -20,12 +20,12 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 void ship_draw(int vdev, float x, float y, float radius, float atitude)
 {
 
-	float leg_length;
-	float left_leg_x;
-	float left_leg_y;
-	float right_leg_x;
-	float right_leg_y;
-	float angle;
+	float leg_length = 0;
+	float left_leg_x = 0;
+	float left_leg_y = 0;
+	float right_leg_x = 0;
+	float right_leg_y = 0;
+	float angle = 0;
 	float leg_angle = 45*(M_PI/180);
 
 	angle = (atitude*(M_PI/180)) + (270*(M_PI/180));

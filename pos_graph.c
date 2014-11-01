@@ -60,6 +60,7 @@ void *pos_graph(void *input)
 	origin_x = data->window_w / (2*avg_x) + 20;
 	origin_y = data->font_size + 20;
 	printf("%f %f %f %f", origin_x, origin_y, factor_x, factor_y);
+	
 	data->pdev = g2_open_X11(data->window_w, data->window_h);
 	data->vdev = g2_open_vd();
 	g2_attach(data->vdev, data->pdev);

@@ -91,10 +91,11 @@ int main()
 				/*por implementar*/
 				break;
 			case 0 :
-				pthread_join(t_cockpit, NULL);
+/*				pthread_join(t_cockpit, NULL);
 				pthread_join(t_fisica, NULL);
-				pthread_join(t_graph, NULL);
-				g2_close(data.vdev);
+				pthread_join(t_graph, NULL);*/
+				g2_detach(data.vdev, data.pdev);
+				g2_close(data.pdev);
 				exit(0);
 			default :
 				if(data.vdev != -1 || data.pdev != -1)
