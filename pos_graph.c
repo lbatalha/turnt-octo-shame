@@ -31,7 +31,6 @@ void *pos_graph(void *input)
 	fp = fopen("vooLunarCorrente.txt", "r");
 	if(fp == NULL){
 		printf("ERRO, Falha ao Abrir o Ficheiro\n");
-
 	}
 	else
 	{
@@ -81,13 +80,9 @@ void *pos_graph(void *input)
 	{
 		while(ef != -2)
 		{
-			
 			ef = read_file(data, ef, fp);
-			/*DEBUG*//*printf("%e\t%e\t%e\t%e\t%e\t%e\t%e\n", data->tempo_t, data->h_dist, data->altitude, data->vel_x, data->vel_z, data->atitude, data->fuel);*/
-			/*g2_filled_circle(data->vdev, data->h_dist * factor_x + 20, data->altitude*factor_y + 20, 2);*/
 			g2_plot(data->vdev, data->h_dist * factor_x + 20, data->altitude*factor_y + 20);
 			g2_flush(data->vdev);
-
 		}
 	}
 	fclose(fp);

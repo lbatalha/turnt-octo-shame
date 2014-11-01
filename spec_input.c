@@ -11,35 +11,39 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 #include <stdlib.h>
 #include "eagle2014.h" 
 
-void input_check(char *label, float *input)
+float input_check(const char *label)
 {
-	int end = 1;
-	while(end)
+	float input;
+	while(1)
 	{
-		printf("%s", label); 
-		if((scanf("%f", input)) < 1){
+		printf("%s", label);
+		if((scanf("%f", &input)) < 1){
 			printf("Insira apenas numeros");
 			__fpurge(stdin);
 		}
 		else
-			end = 0;
+			return input;
 	}
 }
 void spec_input(struct main_data *data)
 {
 	printf("\033[2J");
-	printf("\n======== Especificacao dos dados do modulo ========");
+	printf("\n======== Especificacao dos dados do modulo ========\n\n");
 	
-	input_check("\nMassa do Modulo (Kg): ", &data->module_mass); 
-	input_check("Quantidade de Combustivel (Kg): ", &data->fuel);
+	data->module_mass = input_check("Massa do Modulo (Kg): "); 
+	data->fuel = input_check("Quantidade de Combustivel (Kg): ");
 	
-	printf("\n\n======== Dados iniciais de voo ========");
+	printf("\n============== Dados iniciais de voo ==============\n\n");
 	
-	input_check("\nAltitude Inicial (m): ", &data->altitude);
-	input_check("Atitude (graus): ", &data->atitude);
-	input_check("Distancia Horizontal (m): ", &data->h_dist);
-	input_check("Velocidade Horizontal (m/s): ", &data->vel_x);
-	input_check("Velocidade Vertical (m/s): ", &data->vel_z);
+	data->altitude = input_check("Altitude Inicial (m): ");
+	data->atitude = input_check("Atitude (graus): ");
+	data->h_dist = input_check("Distancia Horizontal (m): ");
+	data->vel_x = input_check("Velocidade Horizontal (m/s): ");
+	data->vel_z = input_check("Velocidade Vertical (m/s): ");
 	
-	data->atitude = -data->atitude; /*Inverte Rotacao*/
+	data->atitude = -data->atitude; /*Invert Rotation*/
 }
+
+
+
+
