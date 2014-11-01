@@ -48,8 +48,9 @@ int write_file(struct main_data *data)
 int read_file(struct main_data *data, int line_num, FILE *fp)
 {
      char line[80];
-     
-     if(data->fp == NULL){
+     int rtrn = 0;
+
+     if(fp == NULL){
           printf("ERRO, Falha ao Abrir o Ficheiro\n");
           return -3;
      }
@@ -60,14 +61,19 @@ int read_file(struct main_data *data, int line_num, FILE *fp)
           fseek(fp, 0, SEEK_SET); /*Rewind file, faster than closing and opening*/
      }
      if(line_num == 1)
-          sscanf(line, "%f[kg]\n", &data->module_mass);
+          rtrn = sscanf(line, "%f[kg]\n", &data->module_mass);
      
      if(line_num == 2)
-          sscanf(line, "tempo[s]\tx[m]\tz[m]\tvx[m/s]\tvz[m/s]\tatitude[graus]\tfuel[kg]\n");
+          rtrn = sscanf(line, "tempo[s]\tx[m]\tz[m]\tvx[m/s]\tvz[m/s]\tatitude[graus]\tfuel[kg]\n");
      
      if(line_num > 2)
-          sscanf(line, "%e\t%e\t%e\t%e\t%e\t%e\t%e\n", &data->tempo_t, &data->h_dist, &data->altitude, &data->vel_x, &data->vel_z, &data->atitude, &data->fuel);
-     
+          rtrn = sscanf(line, "%e\t%e\t%e\t%e\t%e\t%e\t%e\n", &data->tempo_t, &data->h_dist, &data->altitude, &data->vel_x, &data->vel_z, &data->atitude, &data->fuel) == EOF;
+               
+     if(rtrn == EOF)
+     {
+          printf("%s\n", strerror(errno));
+          exit(1);
+     }
 
      line_num = line_num + 1;
 

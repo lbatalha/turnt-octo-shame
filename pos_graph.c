@@ -38,12 +38,15 @@ void *pos_graph(void *input)
 		{
 			ef = read_file(data, ef, fp);
 
-			if(altitude_max < data->altitude)
-				altitude_max = data->altitude; /*Verifica altitude maxima*/
-			if(h_max < data->h_dist)
-				h_max = data->h_dist;         /*Verifica pos x maxima*/
-			if(h_min > data->h_dist)
-				h_min = data->h_dist;         /*Verifica pos x minima*/
+			if(ef > 3)
+			{
+				if(altitude_max < data->altitude)
+					altitude_max = data->altitude; /*Verifica altitude maxima*/
+				if(h_max < data->h_dist)
+					h_max = data->h_dist;          /*Verifica pos x maxima*/
+				if(h_min > data->h_dist)
+					h_min = data->h_dist;          /*Verifica pos x minima*/
+			}
 		}
 	}
 
@@ -57,7 +60,7 @@ void *pos_graph(void *input)
 	origin_x = data->window_w / (2*avg_x) + 20;
 	origin_y = data->font_size + 20;
 	printf("%f %f %f %f", origin_x, origin_y, factor_x, factor_y);
-	data->pdev = g2_open_X11(data->window_w , data->window_h);
+	data->pdev = g2_open_X11(data->window_w, data->window_h);
 	data->vdev = g2_open_vd();
 	g2_attach(data->vdev, data->pdev);
 	g2_clear(data->vdev);
@@ -73,7 +76,7 @@ void *pos_graph(void *input)
 
 	g2_pen(data->vdev, 3);
 	
-	if(data->fp == NULL){
+	if(fp == NULL){
 		printf("ERRO, Falha ao Abrir o Ficheiro\n");
 	}
 	else 

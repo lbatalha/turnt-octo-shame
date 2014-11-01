@@ -71,7 +71,6 @@ int main()
 					strcpy(data.landing_status,"Ready");
 				}
 				
-				init_file(&data); /*Inicializa ficheiro, cria cabecalho*/
 				pthread_create(&t_cockpit, NULL, &cockpit_display, &data);
 				pthread_create(&t_fisica, NULL, &fisica, &data);
 				data.option = -1;
@@ -92,6 +91,10 @@ int main()
 				/*por implementar*/
 				break;
 			case 0 :
+				pthread_join(t_cockpit, NULL);
+				pthread_join(t_fisica, NULL);
+				pthread_join(t_graph, NULL);
+				g2_close(data.vdev);
 				exit(0);
 			default :
 				if(data.vdev != -1 || data.pdev != -1)

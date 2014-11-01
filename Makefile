@@ -6,7 +6,7 @@
 #Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 #
 #
-CFLAGS=-O2 -march=native -ansi -pedantic -Wall
+CFLAGS=-O0 -march=native -ansi -ggdb -pedantic -Wall
 LDFLAGS=-lg2 -lpthread -lm
 
 eagle2014: main.o cockpit_display.o draw_data.o file_ops.o ship_draw.o spec_input.o mouse_control.o fisica.o pos_graph.o
