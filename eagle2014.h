@@ -29,7 +29,15 @@ struct main_data
 	
 };
 
+struct point
+{
+	float x, y;
+	char name[32];
+	struct point *next;
+};
 
+struct point *add_point(float x, float y, char *name, struct point *tail);
+struct point *list_points(struct point *tail);
 
 void draw_data(struct main_data data, char *label, float value, char *units, int x_pos, int y_pos );
 void spec_input(struct main_data *data);
@@ -43,5 +51,11 @@ void *cockpit_display(void *input);
 int init_file(struct main_data *data);
 int write_file(struct main_data *data);
 int read_file(struct main_data *data, int line_num, FILE *fp);
+
+
+
+
+
+
 
 #endif
