@@ -4,13 +4,15 @@
 #include <unistd.h>
 #include "eagle2014.h"
 
-struct point *add_point(char *name, float x, float y, struct point *tail)
+struct point *create_point(char *name, float x, float y)
 {
-	tail->next = malloc(48);
-	tail->next->x = x;
-	tail->next->y = y;
-	strcpy(tail->next->name, name);
-	return tail->next;
+	struct point *current;
+	current = malloc(sizeof(struct point));
+	current->x = x;
+	current->y = y;
+	current->next = NULL;
+	strcpy(current->name, name);
+	return current;
 }
 
 int remove_point(char *name, struct point *tail)

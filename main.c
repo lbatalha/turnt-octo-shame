@@ -23,7 +23,7 @@ int main()
 {
 	struct main_data data;
 	
-	struct point surface;
+	struct point *tail;
 	char name;
 	int x,y;
 
@@ -96,15 +96,19 @@ int main()
 					if((scanf("%s,%d,%d", &name, &x, &y)) < 3)
 						printf("Invalid Format\n");
 
-					surface.next = add_point(&name, x, y, &surface);
-
+					if(tail==NULL)
+						tail = create_point(&name, x, y);
+					else{
+						tail->next = create_point(&name, x, y);
+						tail = tail->new;
+					}
 				}
 				break;
 			case 5 :
 				printf("\nList Points\n");
-				
-				
-				
+
+
+
 				break;
 			case 0 :
 /*				pthread_join(t_cockpit, NULL);
