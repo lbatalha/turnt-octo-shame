@@ -22,6 +22,11 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 int main()
 {
 	struct main_data data;
+	
+	struct point surface;
+	char name;
+	int x,y;
+
 	pthread_t t_cockpit = 0, t_fisica = 0, t_graph = 0;
 
 	data.option = -1;
@@ -85,10 +90,21 @@ int main()
 				data.option = -1;
 				break;
 			case 4 :
-				
+				while(1)
+				{
+					printf("\nInsert name,x,y: ");
+					if((scanf("%s,%d,%d", &name, &x, &y)) < 3)
+						printf("Invalid Format\n");
+
+					surface.next = add_point(&name, x, y, &surface);
+
+				}
 				break;
 			case 5 :
-				/*por implementar*/
+				printf("\nList Points\n");
+				
+				
+				
 				break;
 			case 0 :
 /*				pthread_join(t_cockpit, NULL);

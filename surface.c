@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "eagle2014.h"
 
-struct point *add_point(float x, float y, char *name, struct point *tail)
+struct point *add_point(char *name, float x, float y, struct point *tail)
 {
 	tail->next = malloc(48);
 	tail->next->x = x;
