@@ -32,3 +32,26 @@ int list_points(struct point *tail)
 	}
 	return 0;
 }
+
+void surface_setup(struct point *start, struct point *tail)
+{
+	char name;
+	int x,y;
+
+	while(1)
+	{
+		printf("\nInsert name,x,y: ");
+		if((scanf("%s,%d,%d", &name, &x, &y)) < 3)
+			printf("Invalid Format\n");
+
+		if(tail==NULL){
+			tail = create_point(&name, x, y);
+			start = tail;
+		}
+		else{
+			tail->next = create_point(&name, x, y);
+			tail = tail->next;
+		}
+	}
+
+}

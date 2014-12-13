@@ -22,10 +22,8 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 int main()
 {
 	struct main_data data;
-	
 	struct point *tail;
-	char name;
-	int x,y;
+	struct point *start;
 
 	pthread_t t_cockpit = 0, t_fisica = 0, t_graph = 0;
 
@@ -75,34 +73,32 @@ int main()
 					g2_attach(data.vdev, data.pdev);
 					strcpy(data.landing_status,"Ready");
 				}
+				pthread_join(t_cockpit, NULL);
+				pthread_join(t_fisica, NULL);
+				pthread_join(t_graph, NULL);
 				
 				pthread_create(&t_cockpit, NULL, &cockpit_display, &data);
 				pthread_create(&t_fisica, NULL, &fisica, &data);
 				data.option = -1;
+				
 				break;
 			case 3 :
 				data.terminate_cp = 1;
 				pthread_join(t_cockpit, NULL);
 				pthread_join(t_fisica, NULL);
+				pthread_join(t_graph, NULL);
 				data.terminate_cp = 0;
 				
 				pthread_create(&t_graph, NULL, &pos_graph, &data);
 				data.option = -1;
 				break;
 			case 4 :
-				while(1)
-				{
-					printf("\nInsert name,x,y: ");
-					if((scanf("%s,%d,%d", &name, &x, &y)) < 3)
-						printf("Invalid Format\n");
-
-					if(tail==NULL)
-						tail = create_point(&name, x, y);
-					else{
-						tail->next = create_point(&name, x, y);
-						tail = tail->new;
-					}
-				}
+				pthread_join(t_cockpit, NULL);
+				pthread_join(t_fisica, NULL);
+				pthread_join(t_graph, NULL);
+				
+				surface_setup(start, tail);
+				
 				break;
 			case 5 :
 				printf("\nList Points\n");
@@ -111,9 +107,6 @@ int main()
 
 				break;
 			case 0 :
-/*				pthread_join(t_cockpit, NULL);
-				pthread_join(t_fisica, NULL);
-				pthread_join(t_graph, NULL);*/
 				g2_detach(data.vdev, data.pdev);
 				g2_close(data.pdev);
 				exit(0);
