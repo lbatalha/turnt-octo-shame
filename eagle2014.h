@@ -37,7 +37,7 @@ struct point
 };
 
 struct point *add_point(float x, float y, char *name, struct point *tail);
-struct point *list_points(struct point *tail);
+int list_points(struct point *tail);
 
 void draw_data(struct main_data data, char *label, float value, char *units, int x_pos, int y_pos );
 void spec_input(struct main_data *data);
