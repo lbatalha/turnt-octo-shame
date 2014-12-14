@@ -22,8 +22,8 @@ Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
 int main()
 {
 	struct main_data data;
-	struct point *tail;
-	struct point *start;
+	struct point *tail = 0;
+	struct point *start = 0;
 
 	pthread_t t_cockpit = 0, t_fisica = 0, t_graph = 0;
 
@@ -39,6 +39,7 @@ int main()
 	data.force_t = 0;
 	data.force_r = 0;
 	data.terminate_cp = 0;
+
 
 	while(1)										/* Main Loop */
 	{
