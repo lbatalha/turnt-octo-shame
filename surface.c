@@ -28,22 +28,23 @@ int remove_point(char *name, struct point *tail)
 
 int list_points(struct point *tail)
 {
-	if(tail->next == NULL){
-		printf("\nEmpty List!\n");
+	if(tail->next == NULL)
 		return 1;
-	}
-	while (tail->next != NULL) {
+
+	do{
 		printf("%s,%.2f,%.2f", tail->next->name, tail->next->x, tail->next->y);
-	}
+	}while(tail->next != NULL);
 	return 0;
 }
 
 void surface_setup(struct point *start, struct point *tail)
 {
 	char label[32];
-	char *name;
+	char *name/*, *namedelete*/;
+	/*char delete[32];*/
 	float x,y;
 	int option = 0;
+	int list_return = -1;
 	name = label;
 	
 	while(1)
@@ -68,19 +69,22 @@ void surface_setup(struct point *start, struct point *tail)
 			case 1: /*Insert new point*/
 				while(1)
 				{
-					printf("Input: 'name x y'; type \"done\" to exit.\n");
-					if((scanf("%s %f %f", name, &x, &y)) < 3)
-					{
-						if(strcmp("done",name) == 0){
-							printf("\ndone\n");
-							option = -1;
-							break;
-						}	
-						else
-							printf("Invalid Format\n");
+					printf("Input point name; \"!q\" to exit.\n");
+					scanf("%s", name);
+					if(strcmp("!q",name) == 0){
+						printf("\ndone\n");
+						option = -1;
+						break;
+					}	
+					
+					printf("Input \"x y\"");
+					if(scanf("%f %f", &x, &y) < 2){
+						printf("Invalid Format.\n");
+						option = -1;
+						break;
 					}
-					printf("\nend\n");
-					if(tail==NULL){
+								
+					if(tail == NULL){
 						tail = create_point(name, x, y);
 						start = tail;
 					}
@@ -88,22 +92,28 @@ void surface_setup(struct point *start, struct point *tail)
 						tail->next = create_point(name, x, y);
 						tail = tail->next;
 					}
+					printf("\ndone2\n");
 				}
 			case 2: /*Delete point*/
+				while(1)
+				{
+					/*printf("Name of point to delete: ");
+					scanf("%s", namedelete);*/				
+									
+				}
+
 				option = -1;
 				break;
 			case 3: /*List all point DEBUG*/
-				tail = start; /*rewind*/
-				while(1)
-				{
-					printf("\nPoint List\n");
-					printf("%s %.2f %.2f\n", tail->name, tail->x, tail->y);
-					tail = tail->next;
-					if(tail->next == NULL){
-						option = -1;
-						break;
+					list_return = -1;
+					tail = start;
+					while(list_return < 0)
+					{
+						list_return = list_points(tail);
+
 					}
-				}
+				option = -1;
+				break;
 			case 0: /*exit*/
 				exit(0);
 			default:
