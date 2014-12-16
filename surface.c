@@ -32,12 +32,13 @@ int list_points(struct point *tail)
 		return 1;
 
 	do{
-		printf("%s,%.2f,%.2f", tail->next->name, tail->next->x, tail->next->y);
+		printf("%s,%.2f,%.2f \n", tail->next->name, tail->next->x, tail->next->y);
+		tail->next = tail->next->next;
 	}while(tail->next != NULL);
 	return 0;
 }
 
-void surface_setup(struct point *start, struct point *tail)
+int surface_setup(struct point *start, struct point *tail)
 {
 	char label[32];
 	char *name/*, *namedelete*/;
@@ -77,7 +78,7 @@ void surface_setup(struct point *start, struct point *tail)
 						break;
 					}	
 					
-					printf("Input \"x y\"");
+					printf("Input \"x y\": ");
 					if(scanf("%f %f", &x, &y) < 2){
 						printf("Invalid Format.\n");
 						option = -1;
@@ -92,33 +93,36 @@ void surface_setup(struct point *start, struct point *tail)
 						tail->next = create_point(name, x, y);
 						tail = tail->next;
 					}
-					printf("\ndone2\n");
 				}
+				break;
 			case 2: /*Delete point*/
-				while(1)
+	/*			while(1)
 				{
-					/*printf("Name of point to delete: ");
-					scanf("%s", namedelete);*/				
+					printf("Name of point to delete: ");
+					scanf("%s", namedelete);				
 									
-				}
+				}*/
 
 				option = -1;
 				break;
 			case 3: /*List all point DEBUG*/
-					list_return = -1;
-					tail = start;
-					while(list_return < 0)
-					{
-						list_return = list_points(tail);
+				list_return = -1;
+				tail = start;
+				printf("abc\n");
+				list_return = list_points(tail);
+				if(list_return == 1)
+					printf("Empty List.\n");
 
-					}
+				printf("\nPress Enter to continue.");
+				__fpurge(stdin);
+				getchar();
 				option = -1;
 				break;
 			case 0: /*exit*/
-				exit(0);
+				return 0;
 			default:
 				printf("\033[2J"); /*clear terminal*/
-				sleep(1);
+				
 		}
 	}
 }

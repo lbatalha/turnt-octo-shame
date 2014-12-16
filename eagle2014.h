@@ -38,7 +38,7 @@ struct point
 
 struct point *create_point(char *name, float x, float y);
 int list_points(struct point *tail);
-void surface_setup(struct point *start, struct point *tail);
+int surface_setup(struct point *start, struct point *tail);
 
 void draw_data(struct main_data data, char *label, float value, char *units, int x_pos, int y_pos );
 void spec_input(struct main_data *data);
