@@ -1,3 +1,12 @@
+/*
+Grupo 74
+
+	63282 - Artur Guilherme Rodrigues de Vasconcelos
+>	70037 - Luis Filipe Ramos Batalha
+
+Projecto Eagle2014 - https://github.com/lbatalha/turnt-octo-shame
+*/
+
 #define _BSD_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,15 +29,41 @@ struct point *create_point(char *name, float x, float y)
 	return current;
 }
  
-int remove_point(char *name, struct point *tail)
+int remove_point(char *point, struct point *tail)
 {
-	
+	if(tail->next == NULL)
+		if(strcmp(point, tail->name) == 0 )
+			free(tail);
+			return 0;
+		else
+			return 1;
+	do{
+		if(strcmp(point, tail->next->name) == 0)
+		{
+			if(tail->next->next != NULL)
+			{
+				tail->next = tail->next->next;
+				free(tail->next);
+				return 0;
+			}
+			else
+			{
+				free(tail->next);
+				tail->next = NULL;
+				return 0;
+			}
+		}	
+		else
+			tail->next = tail->next->next;
+
+	}while(tail->next != NULL);
 	return 0;
 }
 
 int list_points(struct point *tail)
 {
 	if(tail->next == NULL)
+		printf("%s,%.2f,%.2f \n", tail->name, tail->x, tail->y);
 		return 1;
 
 	do{
@@ -45,7 +80,7 @@ int surface_setup(struct point *start, struct point *tail)
 	/*char delete[32];*/
 	float x,y;
 	int option = 0;
-	int list_return = -1;
+	/*int list_return = -1;*/
 	name = label;
 	
 	while(1)
@@ -96,22 +131,21 @@ int surface_setup(struct point *start, struct point *tail)
 				}
 				break;
 			case 2: /*Delete point*/
-	/*			while(1)
+				while(1)
 				{
+					tail = start;
 					printf("Name of point to delete: ");
 					scanf("%s", namedelete);				
-									
-				}*/
+					remove_point(namedelete, start);			
+				}
 
 				option = -1;
 				break;
 			case 3: /*List all point DEBUG*/
-				list_return = -1;
+				/*list_return = -1;*/
 				tail = start;
-				printf("abc\n");
-				list_return = list_points(tail);
-				if(list_return == 1)
-					printf("Empty List.\n");
+
+				list_points(tail);
 
 				printf("\nPress Enter to continue.");
 				__fpurge(stdin);
