@@ -29,7 +29,7 @@ struct point *create_point(char *name, float x, float y)
 	return current;
 }
  
-int remove_point(char *point, struct point *tail)
+/*int remove_point(char *point, struct point *tail)
 {
 	if(tail->next == NULL)
 		if(strcmp(point, tail->name) == 0 )
@@ -58,7 +58,7 @@ int remove_point(char *point, struct point *tail)
 
 	}while(tail->next != NULL);
 	return 0;
-}
+}*/
 
 int list_points(struct point *tail)
 {
@@ -131,13 +131,13 @@ int surface_setup(struct point *start, struct point *tail)
 				}
 				break;
 			case 2: /*Delete point*/
-				while(1)
+/*				while(1)
 				{
 					tail = start;
 					printf("Name of point to delete: ");
 					scanf("%s", namedelete);				
 					remove_point(namedelete, start);			
-				}
+				}*/
 
 				option = -1;
 				break;
